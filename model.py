@@ -137,8 +137,10 @@ class Model:
             plot_loss(train_losses, test_losses)
             plot_acc(train_correct, test_correct)
 
-    def load_model(self, name):
-        self.model.load_state_dict(torch.load(f'./Model/{name}_best.pt'))
+    def load_model(self):
+        self.model.load_state_dict(torch.load(f'./Model/{self.name}_best.pt'))
+
+
 
 
 

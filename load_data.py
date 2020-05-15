@@ -27,11 +27,15 @@ def download_data():
     return train_data, test_data
 
 
-def create_loaders(train, test, batch_size=10):
+def create_loaders(train, test, batch_size=10, test_only=False):
     torch.manual_seed(0)
-    train_loader = DataLoader(train, batch_size=batch_size, shuffle=True, pin_memory=True)
-    test_loader = DataLoader(test, batch_size=batch_size, shuffle=False, pin_memory=True)
-    return train_loader, test_loader
+    if not test_only:
+        train_loader = DataLoader(train, batch_size=batch_size, shuffle=True, pin_memory=True)
+        test_loader = DataLoader(test, batch_size=batch_size, shuffle=False, pin_memory=True)
+        return train_loader, test_loader
+    else:
+        test_loader = DataLoader(test, batch_size=batch_size, shuffle=False, pin_memory=True)
+        return test_loader
 
 
 def show_sample(train_loader):
